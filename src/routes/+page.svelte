@@ -2,12 +2,11 @@
 	// import { NavigationMenu } from 'bits-ui';
 	// import gacha from '$lib/images/btn_icon_system_Gacha.png';
 	import gacha_ten from '$lib/images/btn_gacha_ten.png';
-	import RecruitCardDisc from '$lib/components/RecruitCardDisc.svelte';
-	import RecruitCardTrekker from '$lib/components/RecruitCardTrekker.svelte';
+	import RecruitCard from '$lib/components/RecruitCard.svelte';
 
 	type Recruit = {
 		type: 'trekker' | 'disc';
-		rarity: number;
+		rarity: 3 | 4 | 5;
 		assetID: number;
 		name: string;
 	};
@@ -307,11 +306,7 @@
 <!-- <p>{trekkerPityCounter}</p> -->
 <section class="result">
 	{#each trekkerRecruitHistory as { type, rarity, assetID }, i (i + assetID.toString())}
-		{#if type === 'trekker'}
-			<RecruitCardTrekker {rarity} {assetID} />
-		{:else}
-			<RecruitCardDisc {rarity} {assetID} />
-		{/if}
+		<RecruitCard {type} {rarity} {assetID} />
 	{/each}
 </section>
 <button onclick={recruit10}

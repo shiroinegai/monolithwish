@@ -1,0 +1,22 @@
+import type { SimulatorState } from '$lib/types/simulator';
+import { TIDE_TO_THE_FULL_MOON } from '$lib/data/banners';
+
+export const simulatorState: SimulatorState = $state({
+	activeBanner: TIDE_TO_THE_FULL_MOON,
+	pityCounter: {
+		trekker_limited: 0,
+		trekker_limited_4star_guarantee: 0,
+		trekker_permanent: 0,
+		trekker_permanent_4star_guarantee: 0,
+		disc_limited: 0,
+		disc_limited_4star_guarantee: 0,
+		disc_permanent: 0,
+		disc_permanent_4star_guarantee: 0
+	},
+	recruitHistory: {
+		trekker_limited: [],
+		trekker_permanent: [],
+		disc_limited: [],
+		disc_permanent: []
+	}
+});

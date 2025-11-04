@@ -1,7 +1,7 @@
 <script lang="ts">
-	export let type: 'disc' | 'trekker';
-	export let rarity: 3 | 4 | 5;
-	export let assetID: number;
+	import type { Disc, Trekker } from '$lib/types/simulator';
+
+	let { type, rarity, assetID, name }: Disc | Trekker = $props();
 
 	const recruitCardAssets: Record<string, string> = import.meta.glob('$lib/images/*.png', {
 		eager: true,
@@ -26,7 +26,7 @@
 			<img
 				class="stack art"
 				src={recruitCardAssets[`/src/lib/images/outfit_${assetID}_gacha.png`]}
-				alt=""
+				alt={name}
 			/>
 			<img
 				class="stack foreground"
@@ -43,7 +43,7 @@
 			<img
 				class="stack art"
 				src={recruitCardAssets[`/src/lib/images/head_${assetID}_GC.png`]}
-				alt=""
+				alt={name}
 			/>
 			<img
 				class="stack foreground"
@@ -63,7 +63,6 @@
 	.template {
 		display: grid;
 		grid-template-columns: 1fr;
-		grid-template-rows: 1fr;
 		align-items: center;
 	}
 

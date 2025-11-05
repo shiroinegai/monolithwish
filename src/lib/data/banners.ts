@@ -1,6 +1,7 @@
 import type { Banner } from '$lib/types/simulator';
 
 export const TIDE_TO_THE_FULL_MOON: Banner = {
+	bannerID: 10155,
 	name: 'Tide to the Full Moon',
 	type: 'trekker_limited',
 	rateUps: [
@@ -11,6 +12,7 @@ export const TIDE_TO_THE_FULL_MOON: Banner = {
 };
 
 export const BLADES_BENEATH_THE_MOON: Banner = {
+	bannerID: 10144,
 	name: 'Blades Beneath the Moon',
 	type: 'trekker_limited',
 	rateUps: [
@@ -21,6 +23,7 @@ export const BLADES_BENEATH_THE_MOON: Banner = {
 };
 
 export const OCEAN_MEETS_THE_SKY: Banner = {
+	bannerID: 20155,
 	name: 'Ocean Meets the Sky',
 	type: 'disc_limited',
 	rateUps: [
@@ -31,6 +34,7 @@ export const OCEAN_MEETS_THE_SKY: Banner = {
 };
 
 export const MOON_UPON_STILL_WATERS: Banner = {
+	bannerID: 20144,
 	name: 'Moon upon Still Waters',
 	type: 'disc_limited',
 	rateUps: [
@@ -39,3 +43,26 @@ export const MOON_UPON_STILL_WATERS: Banner = {
 		{ type: 'disc', rarity: 4, assetID: 3009, name: 'Rainy Tune' }
 	]
 };
+
+export const BOSSS_REGULARS: Banner = {
+	bannerID: 1,
+	name: "Boss's Regulars",
+	type: 'trekker_permanent',
+	rateUps: []
+};
+
+export const MEMORIES_REWIND: Banner = {
+	bannerID: 2,
+	name: 'Memories Rewind',
+	type: 'disc_permanent',
+	rateUps: []
+};
+
+export const BANNERS: Banner[] = [
+	TIDE_TO_THE_FULL_MOON,
+	BLADES_BENEATH_THE_MOON,
+	OCEAN_MEETS_THE_SKY,
+	MOON_UPON_STILL_WATERS,
+	BOSSS_REGULARS,
+	MEMORIES_REWIND
+];

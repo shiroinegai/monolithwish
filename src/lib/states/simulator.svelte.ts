@@ -1,5 +1,6 @@
 import type { SimulatorState } from '$lib/types/simulator';
 import { TIDE_TO_THE_FULL_MOON } from '$lib/data/banners';
+import { generatePool } from '$lib/utilities/simulator';
 
 export const simulatorState: SimulatorState = $state({
 	activeBanner: TIDE_TO_THE_FULL_MOON,
@@ -20,3 +21,9 @@ export const simulatorState: SimulatorState = $state({
 		disc_permanent: []
 	}
 });
+
+const pool = $derived(generatePool(simulatorState.activeBanner));
+
+export function activePool() {
+	return pool;
+}

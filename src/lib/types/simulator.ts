@@ -13,6 +13,7 @@ export type Disc = {
 };
 
 export type Banner = {
+	bannerID: number;
 	name: string;
 	type: 'trekker_limited' | 'disc_limited' | 'trekker_permanent' | 'disc_permanent';
 	rateUps: Trekker[] | Disc[];

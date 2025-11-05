@@ -1,10 +1,8 @@
 import type { Banner, Disc } from '$lib/types/simulator';
 import { TREKKERS_BANNER_POOL, DISCS_BANNER_POOL, COMMON_POOL } from '$lib/data/recruits';
-import { simulatorState } from '../../routes/simulator.svelte';
+import { simulatorState, activePool } from '$lib/states/simulator.svelte';
 
-const pool = generatePool(simulatorState.activeBanner);
-
-function generatePool(banner: Banner) {
+export function generatePool(banner: Banner) {
 	switch (banner.type) {
 		case 'trekker_limited': {
 			const RATE_UP_5_STAR_TREKKERS = banner.rateUps.filter((trekker) => trekker.rarity === 5);
@@ -45,7 +43,7 @@ function generatePool(banner: Banner) {
 			const RATE_UP_5_STAR_DISCS = banner.rateUps.filter((disc) => disc.rarity === 5);
 			const RATE_UP_4_STAR_DISCS = banner.rateUps.filter((disc) => disc.rarity === 4);
 			const OFF_RATE_5_STAR_DISCS = DISCS_BANNER_POOL;
-			const OFF_RATE_4_STAR_DISCS = DISCS_BANNER_POOL.filter(
+			const OFF_RATE_4_STAR_DISCS = COMMON_POOL.filter(
 				(disc) => disc.rarity === 4 && !RATE_UP_4_STAR_DISCS.includes(disc)
 			);
 			const COMMON_3_STAR_DISCS = COMMON_POOL.filter((disc) => disc.rarity === 3);
@@ -181,33 +179,37 @@ function roll5Star() {
 		case 'trekker_limited':
 			if (isRateUp() || isPity()) {
 				resetPity();
-				return pool!.RATE_UP_5_STAR_TREKKERS![
-					Math.floor(seed() * pool!.RATE_UP_5_STAR_TREKKERS!.length)
+				return activePool().RATE_UP_5_STAR_TREKKERS![
+					Math.floor(seed() * activePool().RATE_UP_5_STAR_TREKKERS!.length)
 				];
 			} else {
 				incrementPity();
-				return pool!.OFF_RATE_5_STAR_TREKKERS![
-					Math.floor(seed() * pool!.OFF_RATE_5_STAR_TREKKERS!.length)
+				return activePool().OFF_RATE_5_STAR_TREKKERS![
+					Math.floor(seed() * activePool().OFF_RATE_5_STAR_TREKKERS!.length)
 				];
 			}
 		case 'trekker_permanent':
 			resetPity();
-			return pool!.COMMON_5_STAR_TREKKERS![
-				Math.floor(seed() * pool!.COMMON_5_STAR_TREKKERS!.length)
+			return activePool().COMMON_5_STAR_TREKKERS![
+				Math.floor(seed() * activePool().COMMON_5_STAR_TREKKERS!.length)
 			];
 		case 'disc_limited':
 			if (isRateUp() || isPity()) {
 				resetPity();
-				return pool!.RATE_UP_5_STAR_DISCS![Math.floor(seed() * pool!.RATE_UP_5_STAR_DISCS!.length)];
+				return activePool().RATE_UP_5_STAR_DISCS![
+					Math.floor(seed() * activePool().RATE_UP_5_STAR_DISCS!.length)
+				];
 			} else {
 				incrementPity();
-				return pool!.OFF_RATE_5_STAR_DISCS![
-					Math.floor(seed() * pool!.OFF_RATE_5_STAR_DISCS!.length)
+				return activePool().OFF_RATE_5_STAR_DISCS![
+					Math.floor(seed() * activePool().OFF_RATE_5_STAR_DISCS!.length)
 				];
 			}
 		case 'disc_permanent':
 			resetPity();
-			return pool!.COMMON_5_STAR_DISCS![Math.floor(seed() * pool!.COMMON_5_STAR_DISCS!.length)];
+			return activePool().COMMON_5_STAR_DISCS![
+				Math.floor(seed() * activePool().COMMON_5_STAR_DISCS!.length)
+			];
 	}
 }
 
@@ -219,40 +221,52 @@ function roll4Star() {
 		case 'trekker_limited':
 			if (seed() < 0.5) {
 				if (isRateUp()) {
-					return pool!.RATE_UP_4_STAR_TREKKERS![
-						Math.floor(seed() * pool!.RATE_UP_4_STAR_TREKKERS!.length)
+					return activePool().RATE_UP_4_STAR_TREKKERS![
+						Math.floor(seed() * activePool().RATE_UP_4_STAR_TREKKERS!.length)
 					];
 				} else {
-					return pool!.OFF_RATE_4_STAR_TREKKERS![
-						Math.floor(seed() * pool!.OFF_RATE_4_STAR_TREKKERS!.length)
+					return activePool().OFF_RATE_4_STAR_TREKKERS![
+						Math.floor(seed() * activePool().OFF_RATE_4_STAR_TREKKERS!.length)
 					];
 				}
 			} else {
-				return pool!.COMMON_4_STAR_DISCS![Math.floor(seed() * pool!.COMMON_4_STAR_DISCS!.length)];
+				return activePool().COMMON_4_STAR_DISCS![
+					Math.floor(seed() * activePool().COMMON_4_STAR_DISCS!.length)
+				];
 			}
 		case 'trekker_permanent':
 			if (seed() < 0.5) {
-				return pool!.COMMON_4_STAR_TREKKERS![
-					Math.floor(seed() * pool!.COMMON_4_STAR_TREKKERS!.length)
+				return activePool().COMMON_4_STAR_TREKKERS![
+					Math.floor(seed() * activePool().COMMON_4_STAR_TREKKERS!.length)
 				];
 			} else {
-				return pool!.COMMON_4_STAR_DISCS![Math.floor(seed() * pool!.COMMON_4_STAR_DISCS!.length)];
+				return activePool().COMMON_4_STAR_DISCS![
+					Math.floor(seed() * activePool().COMMON_4_STAR_DISCS!.length)
+				];
 			}
 		case 'disc_limited':
 			if (seed() < 0.5) {
-				return pool!.RATE_UP_4_STAR_DISCS![Math.floor(seed() * pool!.RATE_UP_4_STAR_DISCS!.length)];
+				return activePool().RATE_UP_4_STAR_DISCS![
+					Math.floor(seed() * activePool().RATE_UP_4_STAR_DISCS!.length)
+				];
 			} else {
-				return pool!.COMMON_4_STAR_DISCS![Math.floor(seed() * pool!.COMMON_4_STAR_DISCS!.length)];
+				return activePool().OFF_RATE_4_STAR_DISCS![
+					Math.floor(seed() * activePool().OFF_RATE_4_STAR_DISCS!.length)
+				];
 			}
 		case 'disc_permanent':
-			return pool!.COMMON_4_STAR_DISCS![Math.floor(seed() * pool!.COMMON_4_STAR_DISCS!.length)];
+			return activePool().COMMON_4_STAR_DISCS![
+				Math.floor(seed() * activePool().COMMON_4_STAR_DISCS!.length)
+			];
 	}
 }
 
 function roll3Star() {
 	incrementPity();
 	increment4StarPity();
-	return pool!.COMMON_3_STAR_DISCS![Math.floor(seed() * pool!.COMMON_3_STAR_DISCS!.length)];
+	return activePool().COMMON_3_STAR_DISCS![
+		Math.floor(seed() * activePool().COMMON_3_STAR_DISCS!.length)
+	];
 }
 
 function recruit() {

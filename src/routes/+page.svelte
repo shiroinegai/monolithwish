@@ -1,9 +1,9 @@
 <script lang="ts">
-	import gacha_ten from '$lib/images/btn_gacha_ten.png';
+	import BannerSelector from '$lib/components/BannerSelector.svelte';
 	import RecruitCard from '$lib/components/RecruitCard.svelte';
+	import RecruitButton from '$lib/components/RecruitButton.svelte';
 
-	import { simulatorState } from './simulator.svelte';
-	import { recruit10 } from '$lib/utilities/simulator';
+	import { simulatorState } from '$lib/states/simulator.svelte';
 
 	let displayedRecruits = $derived(
 		simulatorState.activeBanner.type === 'trekker_limited'
@@ -22,39 +22,24 @@
 	<title>Monolith Wish | Home</title>
 </svelte:head>
 
-<section class="result">
-	{#each displayedRecruits as recruit, i (i + recruit.assetID.toString())}
-		<RecruitCard {...recruit} />
-	{/each}
-</section>
-<button onclick={recruit10}>
-	<img src={gacha_ten} alt="" />
-	<div>Recruit x10</div>
-</button>
+<div>
+	<BannerSelector />
+	<section class="result">
+		{#each displayedRecruits as recruit, i (`${i}${recruit.assetID}`)}
+			<RecruitCard {...recruit} />
+		{/each}
+	</section>
+</div>
+<RecruitButton />
 
 <style>
-	button {
-		position: absolute;
-		display: grid;
-		grid-template-columns: 1fr;
-		bottom: 1vw;
-		right: 1vw;
-		max-width: 15vw;
+	div {
+		display: flex;
+		gap: 1.5em;
+		place-items: center;
+		padding: 0 2em;
 	}
-
-	button img {
-		grid-area: 1 / 1;
-	}
-
-	button div {
-		color: white;
-		grid-area: 1 /1;
-		font-size: 1.5cqi;
-		margin: 0.75em auto;
-	}
-
 	.result {
-		padding: 5%;
 		height: 100%;
 		max-width: 1920px;
 		display: grid;

@@ -177,7 +177,6 @@ function reset4StarGuarantee() {
 }
 
 function roll5Star() {
-	reset4StarGuarantee();
 	switch (simulatorState.activeBanner.type) {
 		case 'trekker_limited':
 			if (isRateUp() || isPity()) {
@@ -257,9 +256,10 @@ function roll3Star() {
 }
 
 function recruit() {
-	if (seed() < 0.02 || isPity()) {
+	const recruitSeed = seed();
+	if (recruitSeed < 0.02 || isPity()) {
 		return roll5Star();
-	} else if (seed() < 0.1 || is4StarGuarantee()) {
+	} else if (recruitSeed < 0.1 || is4StarGuarantee()) {
 		return roll4Star();
 	} else {
 		return roll3Star();

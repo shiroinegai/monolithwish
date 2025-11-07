@@ -55,7 +55,8 @@
 	.recruit_button p {
 		color: white;
 		grid-area: 1 / 1;
+		font-size: 1cqi;
 		align-self: self-end;
-		margin-block-end: 1.5em;
+		margin-block-end: 1.1em;
 	}
 </style>

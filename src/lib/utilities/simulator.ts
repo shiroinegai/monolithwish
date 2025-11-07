@@ -85,6 +85,21 @@ function isRateUp() {
 	}
 }
 
+export function pityThreshold() {
+	if (
+		simulatorState.activeBanner.type === 'trekker_limited' ||
+		simulatorState.activeBanner.type === 'trekker_permanent'
+	) {
+		return 159;
+	}
+	if (
+		simulatorState.activeBanner.type === 'disc_limited' ||
+		simulatorState.activeBanner.type === 'disc_permanent'
+	) {
+		return 119;
+	}
+}
+
 function incrementPity() {
 	if (simulatorState.activeBanner.type === 'trekker_limited') {
 		simulatorState.pityCounter.trekker_limited += 1;
@@ -102,16 +117,16 @@ function incrementPity() {
 
 function isPity() {
 	if (simulatorState.activeBanner.type === 'trekker_limited') {
-		return simulatorState.pityCounter.trekker_limited === 159;
+		return simulatorState.pityCounter.trekker_limited === pityThreshold();
 	}
 	if (simulatorState.activeBanner.type === 'trekker_permanent') {
-		return simulatorState.pityCounter.trekker_permanent === 159;
+		return simulatorState.pityCounter.trekker_permanent === pityThreshold();
 	}
 	if (simulatorState.activeBanner.type === 'disc_limited') {
-		return simulatorState.pityCounter.disc_limited === 119;
+		return simulatorState.pityCounter.disc_limited === pityThreshold();
 	}
 	if (simulatorState.activeBanner.type === 'disc_permanent') {
-		return simulatorState.pityCounter.disc_permanent === 119;
+		return simulatorState.pityCounter.disc_permanent === pityThreshold();
 	}
 }
 

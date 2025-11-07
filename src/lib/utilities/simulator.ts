@@ -8,7 +8,7 @@ export function generatePool(banner: Banner) {
 			const RATE_UP_5_STAR_TREKKERS = banner.rateUps.filter((trekker) => trekker.rarity === 5);
 			const RATE_UP_4_STAR_TREKKERS = banner.rateUps.filter((trekker) => trekker.rarity === 4);
 			const OFF_RATE_5_STAR_TREKKERS = TREKKERS_BANNER_POOL.filter(
-				(trekker) => trekker.rarity === 5
+				(trekker) => trekker.rarity === 5 && !RATE_UP_5_STAR_TREKKERS.includes(trekker)
 			);
 			const OFF_RATE_4_STAR_TREKKERS = TREKKERS_BANNER_POOL.filter(
 				(trekker) => trekker.rarity === 4 && !RATE_UP_4_STAR_TREKKERS.includes(trekker)
@@ -42,7 +42,9 @@ export function generatePool(banner: Banner) {
 		case 'disc_limited': {
 			const RATE_UP_5_STAR_DISCS = banner.rateUps.filter((disc) => disc.rarity === 5);
 			const RATE_UP_4_STAR_DISCS = banner.rateUps.filter((disc) => disc.rarity === 4);
-			const OFF_RATE_5_STAR_DISCS = DISCS_BANNER_POOL;
+			const OFF_RATE_5_STAR_DISCS = DISCS_BANNER_POOL.filter(
+				(disc) => !RATE_UP_5_STAR_DISCS.includes(disc)
+			);
 			const OFF_RATE_4_STAR_DISCS = COMMON_POOL.filter(
 				(disc) => disc.rarity === 4 && !RATE_UP_4_STAR_DISCS.includes(disc)
 			);

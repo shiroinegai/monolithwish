@@ -2,6 +2,7 @@
 	import BannerSelector from '$lib/components/BannerSelector.svelte';
 	import RecruitCard from '$lib/components/RecruitCard.svelte';
 	import RecruitButton from '$lib/components/RecruitButton.svelte';
+	import BannerIndicator from '$lib/components/BannerIndicator.svelte';
 
 	import { simulatorState } from '$lib/states/simulator.svelte';
 
@@ -30,6 +31,7 @@
 		{/each}
 	</section>
 </div>
+<BannerIndicator />
 <RecruitButton />
 
 <style>

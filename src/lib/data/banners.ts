@@ -38,9 +38,9 @@ export const A_HEART_TUNED_MELODY: Banner = {
 	name: 'A Heart-Tuned Melody',
 	type: 'disc_limited',
 	rateUps: [
-		{ type: 'trekker', rarity: 5, assetID: 4028, name: 'Daylight Garden' },
-		{ type: 'trekker', rarity: 4, assetID: 3008, name: 'Tranquil Retreat' },
-		{ type: 'trekker', rarity: 4, assetID: 3005, name: '★ Bam Bam Girl ★' }
+		{ type: 'disc', rarity: 5, assetID: 4028, name: 'Daylight Garden' },
+		{ type: 'disc', rarity: 4, assetID: 3008, name: 'Tranquil Retreat' },
+		{ type: 'disc', rarity: 4, assetID: 3005, name: '★ Bam Bam Girl ★' }
 	]
 };
 

@@ -25,10 +25,9 @@
 		display: flex;
 		place-items: center;
 		flex-direction: column;
-		gap: 1em;
-		padding: 1.5em 0;
+		gap: 1cqi;
+		padding: 1cqi;
 		height: 100dvh;
-		min-width: 20vw;
 		overflow: auto;
 		scrollbar-width: none;
 	}

@@ -14,5 +14,6 @@
 		background-image: url($lib/images/bg_gacha_result.png);
 		background-size: cover;
 		overflow: hidden;
+		padding-inline: 1cqi;
 	}
 </style>

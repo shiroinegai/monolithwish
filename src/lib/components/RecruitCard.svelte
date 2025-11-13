@@ -10,7 +10,7 @@
 	});
 </script>
 
-<div class={`template ${type}`}>
+<div class="template">
 	<img
 		class={`stack background_${rarity}`}
 		src={recruitCardAssets[`/src/lib/images/fx_ui_character_gacha_${rarity}.png`]}
@@ -19,12 +19,12 @@
 	<div class="stack card">
 		{#if type === 'disc'}
 			<img
-				class="stack card_border"
+				class="stack"
 				src={recruitCardAssets[`/src/lib/images/db_gacha_outfit_${rarity}.png`]}
 				alt=""
 			/>
 			<img
-				class="stack art"
+				class="stack"
 				src={recruitCardAssets[`/src/lib/images/outfit_${assetID}_gacha.png`]}
 				alt={name}
 			/>
@@ -41,7 +41,7 @@
 				alt=""
 			/>
 			<img
-				class="stack art"
+				class="stack"
 				src={recruitCardAssets[`/src/lib/images/head_${assetID}_GC.png`]}
 				alt={name}
 			/>
@@ -53,7 +53,7 @@
 		{/if}
 		<img
 			class="stack rarity"
-			src={recruitCardAssets[`/src/lib/images/rare_character_text_${rarity}.png`]}
+			src={recruitCardAssets[`/src/lib/images/rare_character_gacha_${rarity}.png`]}
 			alt=""
 		/>
 	</div>
@@ -71,13 +71,13 @@
 	}
 
 	.background_3 {
-		scale: 1.2125;
+		scale: 1.2;
 	}
 	.background_4 {
-		scale: 1.2125 1.33;
+		scale: 1.225 1.33;
 	}
 	.background_5 {
-		scale: 1.2125 1.5;
+		scale: 1.25 1.5;
 	}
 
 	.card {
@@ -89,37 +89,13 @@
 	.foreground {
 		align-self: self-end;
 		justify-self: center;
+		padding: 0.25cqi;
 	}
 
 	.rarity {
-		margin-block-start: 265%;
 		align-self: center;
 		justify-self: center;
-	}
-
-	.disc .art {
-		padding: 4%;
-		justify-self: center;
-	}
-
-	.disc .foreground {
-		padding: 0 3% 4%;
-	}
-
-	.disc .rarity {
-		max-height: calc(47 / 597 * 100%);
-	}
-
-	.trekker .art {
-		padding: calc((100% - (186 / 204 * 100%)) / 2);
-		align-self: self-end;
-	}
-
-	.trekker .foreground {
-		padding: 0 calc((100% - (186 / 204 * 100%)) / 2) 4%;
-	}
-
-	.trekker .rarity {
-		max-height: calc(47 / 711 * 104.5%);
+		translate: 0% 625%;
+		max-height: calc(92 / 600 * 10cqi);
 	}
 </style>

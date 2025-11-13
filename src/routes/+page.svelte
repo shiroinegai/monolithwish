@@ -36,10 +36,10 @@
 
 <style>
 	div {
-		display: flex;
-		gap: 1.5em;
+		display: grid;
+		grid-template-columns: 1fr 4fr;
+		gap: 1cqi;
 		place-items: center;
-		padding: 0 2em;
 	}
 	.result {
 		height: 100%;
@@ -47,6 +47,6 @@
 		display: grid;
 		grid-template-columns: repeat(10, 1fr);
 		align-items: center;
-		gap: 0.5em;
+		gap: 0.5cqi;
 	}
 </style>

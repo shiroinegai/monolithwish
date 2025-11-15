@@ -5,17 +5,23 @@
 
 	import { simulatorState } from '$lib/states/simulator.svelte';
 
-	const bannerAssets: Record<string, string> = import.meta.glob('$lib/images/*.png', {
-		eager: true,
-		query: '?url',
-		import: 'default'
-	});
+	import { images } from '$lib/utilities/assets';
 </script>
 
 <div>
-	{#each BANNERS as banner, i (i + banner.bannerID.toString())}
+	{#each BANNERS as banner, i (`${i}${banner.bannerID}`)}
 		<Button.Root onclick={() => (simulatorState.activeBanner = banner)}>
-			<img src={bannerAssets[`/src/lib/images/tab_gacha_${banner.bannerID}.png`]} alt="" />
+			<picture>
+				<source
+					srcset={images[`/src/lib/images/tab_gacha_${banner.bannerID}.avif`]}
+					type="image/avif"
+				/>
+				<source
+					srcset={images[`/src/lib/images/tab_gacha_${banner.bannerID}.webp`]}
+					type="image/webp"
+				/>
+				<img src={images[`/src/lib/images/tab_gacha_${banner.bannerID}.png`]} alt="" />
+			</picture>
 		</Button.Root>
 	{/each}
 </div>

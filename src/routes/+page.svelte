@@ -37,7 +37,7 @@
 <style>
 	div {
 		display: grid;
-		grid-template-columns: 1fr 4fr;
+		grid-template-columns: 1fr 5fr;
 		gap: 1cqi;
 		place-items: center;
 	}
@@ -48,5 +48,6 @@
 		grid-template-columns: repeat(10, 1fr);
 		align-items: center;
 		gap: 0.5cqi;
+		padding: 1cqi;
 	}
 </style>

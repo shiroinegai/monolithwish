@@ -1,61 +1,42 @@
 <script lang="ts">
 	import type { Disc, Trekker } from '$lib/types/simulator';
 
-	let { type, rarity, assetID, name }: Disc | Trekker = $props();
+	let { type, rarity, assetID }: Disc | Trekker = $props();
 
-	const recruitCardAssets: Record<string, string> = import.meta.glob('$lib/images/*.png', {
-		eager: true,
-		query: '?url',
-		import: 'default'
-	});
+	import { images } from '$lib/utilities/assets';
 </script>
 
+{#snippet stack({ basesrc, classnames = '' }: { basesrc: string; classnames?: string })}
+	<picture class={`stack ${classnames}`}>
+		<source srcset={images[`${basesrc}.avif`]} type="image/avif" />
+		<source srcset={images[`${basesrc}.webp`]} type="image/webp" />
+		<img src={images[`${basesrc}.png`]} alt="" />
+	</picture>
+{/snippet}
+
 <div class="template">
-	<img
-		class={`stack background_${rarity}`}
-		src={recruitCardAssets[`/src/lib/images/fx_ui_character_gacha_${rarity}.png`]}
-		alt=""
-	/>
+	{@render stack({
+		basesrc: `/src/lib/images/fx_ui_character_gacha_${rarity}`,
+		classnames: `background_${rarity}`
+	})}
 	<div class="stack card">
 		{#if type === 'disc'}
-			<img
-				class="stack"
-				src={recruitCardAssets[`/src/lib/images/db_gacha_outfit_${rarity}.png`]}
-				alt=""
-			/>
-			<img
-				class="stack"
-				src={recruitCardAssets[`/src/lib/images/outfit_${assetID}_gacha.png`]}
-				alt={name}
-			/>
-			<img
-				class="stack foreground"
-				src={recruitCardAssets[`/src/lib/images/zs_gacha_outfit.png`]}
-				alt=""
-			/>
+			{@render stack({ basesrc: `/src/lib/images/db_gacha_outfit_${rarity}` })}
+			{@render stack({ basesrc: `/src/lib/images/outfit_${assetID}_gacha` })}
+			{@render stack({ basesrc: `/src/lib/images/zs_gacha_outfit`, classnames: 'foreground' })}
 		{/if}
 		{#if type === 'trekker'}
-			<img
-				class="stack"
-				src={recruitCardAssets[`/src/lib/images/db_gacha_character_${rarity}.png`]}
-				alt=""
-			/>
-			<img
-				class="stack"
-				src={recruitCardAssets[`/src/lib/images/head_${assetID}_GC.png`]}
-				alt={name}
-			/>
-			<img
-				class="stack foreground"
-				src={recruitCardAssets[`/src/lib/images/zs_gacha_character_${rarity}.png`]}
-				alt=""
-			/>
+			{@render stack({ basesrc: `/src/lib/images/db_gacha_character_${rarity}` })}
+			{@render stack({ basesrc: `/src/lib/images/head_${assetID}_GC` })}
+			{@render stack({
+				basesrc: `/src/lib/images/zs_gacha_character_${rarity}`,
+				classnames: 'foreground'
+			})}
 		{/if}
-		<img
-			class="stack rarity"
-			src={recruitCardAssets[`/src/lib/images/rare_character_gacha_${rarity}.png`]}
-			alt=""
-		/>
+		{@render stack({
+			basesrc: `/src/lib/images/rare_character_gacha_${rarity}`,
+			classnames: 'rarity'
+		})}
 	</div>
 </div>
 
@@ -96,6 +77,9 @@
 		align-self: center;
 		justify-self: center;
 		translate: 0% 625%;
+	}
+
+	.rarity :global(img) {
 		max-height: calc(92 / 600 * 10cqi);
 	}
 </style>

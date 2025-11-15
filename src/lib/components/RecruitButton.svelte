@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Button } from 'bits-ui';
 
-	import gacha_ten from '$lib/images/btn_gacha_ten.png';
+	import { images } from '$lib/utilities/assets';
 	import { recruit10, pityThreshold } from '$lib/utilities/simulator';
 
 	import { simulatorState } from '$lib/states/simulator.svelte';
@@ -21,11 +21,17 @@
 							: 0)
 		} till guarantee`
 	);
+
+	let basesrc = `/src/lib/images/btn_gacha_ten`;
 </script>
 
 <Button.Root onclick={recruit10}>
 	<div class="recruit_button">
-		<img src={gacha_ten} alt="" />
+		<picture>
+			<source srcset={images[`${basesrc}.avif`]} type="image/avif" />
+			<source srcset={images[`${basesrc}.webp`]} type="image/webp" />
+			<img src={images[`${basesrc}.png`]} alt="" />
+		</picture>
 		<div>Recruit x10</div>
 		<p>{pityMessage}</p>
 	</div>
@@ -41,7 +47,7 @@
 		max-width: 15vw;
 	}
 
-	.recruit_button img {
+	.recruit_button picture {
 		grid-area: 1 / 1;
 	}
 

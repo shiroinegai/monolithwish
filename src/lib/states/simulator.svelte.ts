@@ -1,9 +1,9 @@
 import type { SimulatorState } from '$lib/types/simulator';
-import { TIDE_TO_THE_FULL_MOON } from '$lib/data/banners';
+import { THE_PROMISE_OF_MELTING_SNOW } from '$lib/data/banners';
 import { generatePool } from '$lib/utilities/simulator';
 
 export const simulatorState: SimulatorState = $state({
-	activeBanner: TIDE_TO_THE_FULL_MOON,
+	activeBanner: THE_PROMISE_OF_MELTING_SNOW,
 	pityCounter: {
 		trekker_limited: 0,
 		trekker_limited_4star_guarantee: 0,

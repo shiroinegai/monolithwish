@@ -281,7 +281,7 @@ function getSkillDamageTypes(skillId: number) {
 }
 
 function getSkillEffectTypes(skillId: number) {
-	const effectTypes = [];
+	const effectTypes: (EffectType | AttributeType)[] = [];
 
 	const params = collateParams(SKILL[skillId]).filter((param) => param.includes('Effect'));
 

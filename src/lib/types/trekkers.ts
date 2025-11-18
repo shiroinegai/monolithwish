@@ -1,4 +1,4 @@
-import type { DamageType, EffectType } from './data';
+import type { DamageType, EffectType, AttributeType } from './data';
 
 export type Trekker = {
 	id: number;
@@ -50,5 +50,5 @@ export type Skill = {
 	cooldown?: number;
 	icon: string;
 	damageType: DamageType[];
-	effectType: EffectType[];
+	effectType: (EffectType | AttributeType)[];
 };

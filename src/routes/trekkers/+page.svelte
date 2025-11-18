@@ -9,15 +9,23 @@
 			{detail.element}, {detail.position}, {detail.attackType}, {detail.style},
 			{detail.faction}
 		</p>
-		<p>Normal Attack: {skill.attack.name}</p>
-		<p>{skill.attack.briefDesc}</p>
-		<p>{skill.attack.desc}</p>
+		{#each ['attack', 'main', 'support', 'ultimate'] as type, i (`${i}${type}`)}
+			<p>
+				{type === 'attack'
+					? 'Normal Attack'
+					: `${type.charAt(0).toUpperCase() + type.slice(1)} Skill`}: {skill[type].name}
+			</p>
+			<p>{skill[type].briefDesc}</p>
+			<p>{skill[type].desc}</p>
+			<p>{skill[type].damageType}</p>
+			<p>{skill[type].effectType}</p>
+		{/each}
 	{/each}
 </div>
 
 <style>
 	div {
-		max-height: 100dvh;
+		max-height: 100svb;
 		overflow: auto;
 		scrollbar-width: none;
 	}

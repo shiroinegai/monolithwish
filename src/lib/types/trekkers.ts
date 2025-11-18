@@ -1,3 +1,5 @@
+import type { DamageType, EffectType } from './data';
+
 export type Trekker = {
 	id: number;
 	detail: {
@@ -14,7 +16,7 @@ export type Trekker = {
 		main: Skill;
 		support: Skill;
 		ultimate: Skill;
-	};
+	} & { [key: string]: Skill };
 };
 
 export type Element = 'Aqua' | 'Ignis' | 'Terra' | 'Ventus' | 'Lux' | 'Umbra';
@@ -45,4 +47,8 @@ export type Skill = {
 	name: string;
 	briefDesc: string;
 	desc: string;
+	cooldown?: number;
+	icon: string;
+	damageType: DamageType[];
+	effectType: EffectType[];
 };

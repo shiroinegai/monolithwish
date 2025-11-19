@@ -1,0 +1,3 @@
+[submodule "src/lib/submodules/autumnvndata"]
+	path = src/lib/submodules/autumnvndata
+	url = https://github.com/AutumnVN/StellaSoraData.git

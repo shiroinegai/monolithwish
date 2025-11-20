@@ -32,9 +32,17 @@
 		place-items: center;
 		flex-direction: column;
 		gap: 1cqi;
-		padding: 1cqi;
-		height: 100dvh;
+		padding: 1cqi 0.25cqi;
+		height: 100cqb;
 		overflow: auto;
 		scrollbar-width: none;
+		background: linear-gradient(
+			in oklab,
+			oklch(0% 0 0 / 0%),
+			25%,
+			oklch(100% 0 0 / 50%),
+			75%,
+			oklch(0% 0 0 / 0%)
+		);
 	}
 </style>

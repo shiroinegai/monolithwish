@@ -14,10 +14,8 @@
 
 <style>
 	picture {
-		position: absolute;
-		top: 1vw;
-		right: 1vw;
-		max-width: 15vw;
-		max-height: 15dvh;
+		align-self: start;
+		grid-area: 1 / 3;
+		margin-block: 1cqi;
 	}
 </style>

@@ -65,21 +65,22 @@
 		display: grid;
 		grid-template-columns: 1fr;
 		scale: 1;
+		container-type: inline-size;
 	}
 
 	.foreground {
 		align-self: self-end;
 		justify-self: center;
-		padding: 0.25cqi;
+		padding: 2.5cqi;
 	}
 
 	.rarity {
 		align-self: center;
 		justify-self: center;
-		translate: 0% 625%;
+		translate: 0% 600%;
 	}
 
 	.rarity :global(img) {
-		max-height: calc(92 / 600 * 10cqi);
+		max-height: 22cqi;
 	}
 </style>

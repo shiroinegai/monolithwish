@@ -30,24 +30,24 @@
 			<RecruitCard {...recruit} />
 		{/each}
 	</section>
+	<BannerIndicator />
+	<RecruitButton />
 </div>
-<BannerIndicator />
-<RecruitButton />
 
 <style>
 	div {
 		display: grid;
-		grid-template-columns: 1fr 5fr;
+		grid-template-columns: 1fr 4fr 1fr;
 		gap: 1cqi;
 		place-items: center;
+		padding-inline: 1cqi;
 	}
 	.result {
-		height: 100%;
-		max-width: 1920px;
+		height: 100cqb;
 		display: grid;
 		grid-template-columns: repeat(10, 1fr);
-		align-items: center;
-		gap: 0.5cqi;
+		gap: 0.5%;
 		padding: 1cqi;
+		grid-area: 1 / 2 / 1 / 4;
 	}
 </style>

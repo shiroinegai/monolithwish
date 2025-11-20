@@ -5,15 +5,19 @@
 </script>
 
 <main>
-	{@render children()}
+	<div>
+		{@render children()}
+	</div>
 </main>
 
 <style>
 	main {
-		height: 100dvh;
+		height: 100svb;
 		background-image: url($lib/images/bg_gacha_result.png);
 		background-size: cover;
-		overflow: hidden;
-		padding-inline: 1cqi;
+	}
+	div {
+		margin-inline: auto;
+		max-width: 1920px;
 	}
 </style>

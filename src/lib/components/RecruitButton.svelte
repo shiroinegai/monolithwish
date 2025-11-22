@@ -45,6 +45,7 @@
 		align-items: center;
 		justify-items: center;
 		margin-block-end: 1cqi;
+		z-index: 1;
 	}
 
 	.recruit_button picture {

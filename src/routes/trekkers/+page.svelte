@@ -25,7 +25,7 @@
 
 <style>
 	div {
-		max-height: 100svb;
+		max-height: 100dvb;
 		overflow: auto;
 		scrollbar-width: none;
 	}

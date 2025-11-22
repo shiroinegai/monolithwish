@@ -17,5 +17,6 @@
 		align-self: start;
 		grid-area: 1 / 3;
 		margin-block: 1cqi;
+		z-index: 1;
 	}
 </style>

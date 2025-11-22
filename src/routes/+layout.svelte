@@ -12,7 +12,7 @@
 
 <style>
 	main {
-		height: 100svb;
+		height: 100dvb;
 		background-image: url($lib/images/bg_gacha_result.png);
 		background-size: cover;
 	}

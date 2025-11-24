@@ -1,4 +1,25 @@
-import type { Banner } from '$lib/types/simulator';
+import * as v from 'valibot';
+
+import _banners from '$SSData/gacha.json';
+export const banners: Record<string, Banner> = _banners;
+
+export const RateUpSchema = v.object({
+	id: v.number(),
+	name: v.string()
+});
+
+export type RateUp = v.InferOutput<typeof RateUpSchema>;
+
+export const BannerSchema = v.object({
+	id: v.number(),
+	name: v.string(),
+	rateUp5Star: v.array(RateUpSchema),
+	rateUp4Star: v.array(RateUpSchema),
+	startTime: v.pipe(v.string(), v.isoDateTime()),
+	endTime: v.pipe(v.string(), v.isoDateTime())
+});
+
+export type Banner = v.InferOutput<typeof BannerSchema>;
 
 export const THE_PROMISE_OF_MELTING_SNOW: Banner = {
 	bannerID: 10134,

@@ -64,7 +64,7 @@
 	.card {
 		display: grid;
 		grid-template-columns: 1fr;
-		scale: 1;
+		z-index: 1;
 		container-type: inline-size;
 	}
 

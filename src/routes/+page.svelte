@@ -26,7 +26,7 @@
 <div>
 	<BannerSelector />
 	<section class="result">
-		{#each displayedRecruits as recruit, i (`${i}${recruit.assetID}`)}
+		{#each displayedRecruits as recruit, i (`${i}${recruit.id}`)}
 			<RecruitCard {...recruit} />
 		{/each}
 	</section>

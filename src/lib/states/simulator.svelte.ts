@@ -1,9 +1,8 @@
-import type { SimulatorState } from '$lib/types/simulator';
-import { THE_PROMISE_OF_MELTING_SNOW } from '$lib/data/banners';
+import { BANNERS } from '$lib/data/banners';
 import { generatePool } from '$lib/utilities/simulator';
 
-export const simulatorState: SimulatorState = $state({
-	activeBanner: THE_PROMISE_OF_MELTING_SNOW,
+export const simulatorState = $state({
+	activeBanner: BANNERS[1],
 	pityCounter: {
 		trekker_limited: 0,
 		trekker_limited_4star_guarantee: 0,

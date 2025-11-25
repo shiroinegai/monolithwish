@@ -1,7 +1,5 @@
 <script lang="ts">
-	import type { Disc, Trekker } from '$lib/types/simulator';
-
-	let { type, rarity, assetID }: Disc | Trekker = $props();
+	let { type, rarity, id } = $props();
 
 	import { images } from '$lib/utilities/assets';
 </script>
@@ -22,12 +20,12 @@
 	<div class="stack card">
 		{#if type === 'disc'}
 			{@render stack({ basesrc: `/src/lib/images/db_gacha_outfit_${rarity}` })}
-			{@render stack({ basesrc: `/src/lib/images/outfit_${assetID}_gacha` })}
+			{@render stack({ basesrc: `/src/lib/images/outfit_${id}_gacha` })}
 			{@render stack({ basesrc: `/src/lib/images/zs_gacha_outfit`, classnames: 'foreground' })}
 		{/if}
 		{#if type === 'trekker'}
 			{@render stack({ basesrc: `/src/lib/images/db_gacha_character_${rarity}` })}
-			{@render stack({ basesrc: `/src/lib/images/head_${assetID}_GC` })}
+			{@render stack({ basesrc: `/src/lib/images/head_${id}01_GC` })}
 			{@render stack({
 				basesrc: `/src/lib/images/zs_gacha_character_${rarity}`,
 				classnames: 'foreground'

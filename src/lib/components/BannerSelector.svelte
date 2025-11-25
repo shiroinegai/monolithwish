@@ -9,18 +9,12 @@
 </script>
 
 <div>
-	{#each BANNERS as banner, i (`${i}${banner.bannerID}`)}
+	{#each BANNERS as banner, i (`${i}${banner.id}`)}
 		<Button.Root onclick={() => (simulatorState.activeBanner = banner)}>
 			<picture>
-				<source
-					srcset={images[`/src/lib/images/tab_gacha_${banner.bannerID}.avif`]}
-					type="image/avif"
-				/>
-				<source
-					srcset={images[`/src/lib/images/tab_gacha_${banner.bannerID}.webp`]}
-					type="image/webp"
-				/>
-				<img src={images[`/src/lib/images/tab_gacha_${banner.bannerID}.png`]} alt="" />
+				<source srcset={images[`/src/lib/images/tab_gacha_${banner.id}.avif`]} type="image/avif" />
+				<source srcset={images[`/src/lib/images/tab_gacha_${banner.id}.webp`]} type="image/webp" />
+				<img src={images[`/src/lib/images/tab_gacha_${banner.id}.png`]} alt="" />
 			</picture>
 		</Button.Root>
 	{/each}

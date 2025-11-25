@@ -1,137 +1,54 @@
-import * as v from 'valibot';
+import LIMITED_BANNERS_JSON from '$SSData/gacha.json';
 
-import _banners from '$SSData/gacha.json';
-export const banners: Record<string, Banner> = _banners;
+import type { Banner, RateUp } from '$lib/types/banners';
 
-export const RateUpSchema = v.object({
-	id: v.number(),
-	name: v.string()
-});
+const PERMANENT_BANNERS: Banner[] = [
+	{
+		id: 1,
+		name: "Boss's Regulars",
+		type: 'trekker_permanent'
+	},
+	{
+		id: 2,
+		name: 'Memories Rewind',
+		type: 'disc_permanent'
+	}
+];
 
-export type RateUp = v.InferOutput<typeof RateUpSchema>;
+const limitedBanners = LIMITED_BANNERS_JSON;
 
-export const BannerSchema = v.object({
-	id: v.number(),
-	name: v.string(),
-	rateUp5Star: v.array(RateUpSchema),
-	rateUp4Star: v.array(RateUpSchema),
-	startTime: v.pipe(v.string(), v.isoDateTime()),
-	endTime: v.pipe(v.string(), v.isoDateTime())
-});
-
-export type Banner = v.InferOutput<typeof BannerSchema>;
-
-export const THE_PROMISE_OF_MELTING_SNOW: Banner = {
-	bannerID: 10134,
-	name: 'The Promise of Melting Snow',
-	type: 'trekker_limited',
-	rateUps: [
-		{ type: 'trekker', rarity: 5, assetID: 13401, name: 'Fuyuka' },
-		{ type: 'trekker', rarity: 4, assetID: 12601, name: 'Flora' },
-		{ type: 'trekker', rarity: 4, assetID: 12001, name: 'Canace' }
-	]
-};
-
-export const A_FATEFUL_ENCOUNTER: Banner = {
-	bannerID: 10119,
-	name: 'A Fateful Encounter',
-	type: 'trekker_limited',
-	rateUps: [
-		{ type: 'trekker', rarity: 5, assetID: 11901, name: 'Nanoha' },
-		{ type: 'trekker', rarity: 4, assetID: 10701, name: 'Tilia' },
-		{ type: 'trekker', rarity: 4, assetID: 10801, name: 'Kasimira' }
-	]
-};
-
-export const TIDE_TO_THE_FULL_MOON: Banner = {
-	bannerID: 10155,
-	name: 'Tide to the Full Moon',
-	type: 'trekker_limited',
-	rateUps: [
-		{ type: 'trekker', rarity: 5, assetID: 15501, name: 'Shia' },
-		{ type: 'trekker', rarity: 4, assetID: 10701, name: 'Tilia' },
-		{ type: 'trekker', rarity: 4, assetID: 10801, name: 'Kasimira' }
-	]
-};
-
-export const BLADES_BENEATH_THE_MOON: Banner = {
-	bannerID: 10144,
-	name: 'Blades Beneath the Moon',
-	type: 'trekker_limited',
-	rateUps: [
-		{ type: 'trekker', rarity: 5, assetID: 14401, name: 'Chitose' },
-		{ type: 'trekker', rarity: 4, assetID: 11701, name: 'Jinglin' },
-		{ type: 'trekker', rarity: 4, assetID: 12701, name: 'Teresa' }
-	]
-};
-
-export const FIREWORKS_DAZZLING_THE_NIGHT: Banner = {
-	bannerID: 20134,
-	name: 'Fireworks Dazzling the Night',
-	type: 'disc_limited',
-	rateUps: [
-		{ type: 'disc', rarity: 5, assetID: 4017, name: 'Fireworks' },
-		{ type: 'disc', rarity: 4, assetID: 3015, name: 'Unknown Fragrance' },
-		{ type: 'disc', rarity: 4, assetID: 3016, name: 'Cage of Roses' }
-	]
-};
-
-export const A_HEART_TUNED_MELODY: Banner = {
-	bannerID: 20119,
-	name: 'A Heart-Tuned Melody',
-	type: 'disc_limited',
-	rateUps: [
-		{ type: 'disc', rarity: 5, assetID: 4028, name: 'Daylight Garden' },
-		{ type: 'disc', rarity: 4, assetID: 3008, name: 'Tranquil Retreat' },
-		{ type: 'disc', rarity: 4, assetID: 3005, name: '★ Bam Bam Girl ★' }
-	]
-};
-
-export const OCEAN_MEETS_THE_SKY: Banner = {
-	bannerID: 20155,
-	name: 'Ocean Meets the Sky',
-	type: 'disc_limited',
-	rateUps: [
-		{ type: 'disc', rarity: 5, assetID: 4038, name: 'Ripples of Nostalgia' },
-		{ type: 'disc', rarity: 4, assetID: 3004, name: 'Twin Moon Mischief' },
-		{ type: 'disc', rarity: 4, assetID: 3006, name: 'Good Night' }
-	]
-};
-
-export const MOON_UPON_STILL_WATERS: Banner = {
-	bannerID: 20144,
-	name: 'Moon upon Still Waters',
-	type: 'disc_limited',
-	rateUps: [
-		{ type: 'disc', rarity: 5, assetID: 4026, name: 'Sword Against Stream' },
-		{ type: 'disc', rarity: 4, assetID: 3005, name: '★ Bam Bam Girl ★' },
-		{ type: 'disc', rarity: 4, assetID: 3009, name: 'Rainy Tune' }
-	]
-};
-
-export const BOSSS_REGULARS: Banner = {
-	bannerID: 1,
-	name: "Boss's Regulars",
-	type: 'trekker_permanent',
-	rateUps: []
-};
-
-export const MEMORIES_REWIND: Banner = {
-	bannerID: 2,
-	name: 'Memories Rewind',
-	type: 'disc_permanent',
-	rateUps: []
-};
+const formattedLimitedBanners: Banner[] = Object.entries(limitedBanners).map((banner) => ({
+	id: banner[1].id,
+	name: banner[1].name,
+	rateUp5Star: banner[1].rateUp5Star.map((rateUp) => ({
+		...attributeRateUpProps(rateUp, banner[1].id),
+		rarity: 5
+	})),
+	rateUp4Star: banner[1].rateUp4Star.map((rateUp) => ({
+		...attributeRateUpProps(rateUp, banner[1].id),
+		rarity: 4
+	})),
+	startTime: banner[1].startTime,
+	endTime: banner[1].endTime,
+	type: isTrekkerBanner(banner[1].id) ? 'trekker_limited' : 'disc_limited'
+}));
 
 export const BANNERS: Banner[] = [
-	THE_PROMISE_OF_MELTING_SNOW,
-	A_FATEFUL_ENCOUNTER,
-	TIDE_TO_THE_FULL_MOON,
-	BLADES_BENEATH_THE_MOON,
-	FIREWORKS_DAZZLING_THE_NIGHT,
-	A_HEART_TUNED_MELODY,
-	OCEAN_MEETS_THE_SKY,
-	MOON_UPON_STILL_WATERS,
-	BOSSS_REGULARS,
-	MEMORIES_REWIND
+	...formattedLimitedBanners
+		.filter((banner) => banner.type === 'trekker_limited')
+		.sort((a, b) => new Date(b.startTime!).getTime() - new Date(a.startTime!).getTime()),
+	...formattedLimitedBanners
+		.filter((banner) => banner.type === 'disc_limited')
+		.sort((a, b) => new Date(b.startTime!).getTime() - new Date(a.startTime!).getTime()),
+	...PERMANENT_BANNERS
 ];
+
+function isTrekkerBanner(id: number) {
+	return id.toString().startsWith('10');
+}
+
+function attributeRateUpProps(rateUp: Omit<RateUp, 'type'>, bannerId: number): RateUp {
+	return isTrekkerBanner(bannerId)
+		? { ...rateUp, type: 'trekker' }
+		: { ...rateUp, id: +rateUp.id.toString().slice(-4), type: 'disc' };
+}

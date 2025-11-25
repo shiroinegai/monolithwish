@@ -3,7 +3,7 @@
 
 	import { images } from '$lib/utilities/assets';
 
-	let basesrc = $derived(`/src/lib/images/cover_${simulatorState.activeBanner.bannerID}`);
+	let basesrc = $derived(`/src/lib/images/cover_${simulatorState.activeBanner.id}`);
 </script>
 
 <picture>

@@ -1,17 +1,17 @@
-import type { Banner, Disc } from '$lib/types/simulator';
 import { TREKKERS_BANNER_POOL, DISCS_BANNER_POOL, COMMON_POOL } from '$lib/data/recruits';
 import { simulatorState, activePool } from '$lib/states/simulator.svelte';
+import type { Banner } from '$lib/data/banners';
 
 export function generatePool(banner: Banner) {
 	switch (banner.type) {
 		case 'trekker_limited': {
-			const RATE_UP_5_STAR_TREKKERS = banner.rateUps.filter((trekker) => trekker.rarity === 5);
-			const RATE_UP_4_STAR_TREKKERS = banner.rateUps.filter((trekker) => trekker.rarity === 4);
+			const RATE_UP_5_STAR_TREKKERS = banner.rateUp5Star;
+			const RATE_UP_4_STAR_TREKKERS = banner.rateUp4Star;
 			const OFF_RATE_5_STAR_TREKKERS = TREKKERS_BANNER_POOL.filter(
-				(trekker) => trekker.rarity === 5 && !RATE_UP_5_STAR_TREKKERS.includes(trekker)
+				(trekker) => trekker.rarity === 5 && !RATE_UP_5_STAR_TREKKERS!.includes(trekker)
 			);
 			const OFF_RATE_4_STAR_TREKKERS = TREKKERS_BANNER_POOL.filter(
-				(trekker) => trekker.rarity === 4 && !RATE_UP_4_STAR_TREKKERS.includes(trekker)
+				(trekker) => trekker.rarity === 4 && !RATE_UP_4_STAR_TREKKERS!.includes(trekker)
 			);
 			const COMMON_4_STAR_DISCS = COMMON_POOL.filter((disc) => disc.rarity === 4);
 			const COMMON_3_STAR_DISCS = COMMON_POOL.filter((disc) => disc.rarity === 3);
@@ -40,13 +40,13 @@ export function generatePool(banner: Banner) {
 		}
 
 		case 'disc_limited': {
-			const RATE_UP_5_STAR_DISCS = banner.rateUps.filter((disc) => disc.rarity === 5);
-			const RATE_UP_4_STAR_DISCS = banner.rateUps.filter((disc) => disc.rarity === 4);
+			const RATE_UP_5_STAR_DISCS = banner.rateUp5Star;
+			const RATE_UP_4_STAR_DISCS = banner.rateUp4Star;
 			const OFF_RATE_5_STAR_DISCS = DISCS_BANNER_POOL.filter(
-				(disc) => !RATE_UP_5_STAR_DISCS.includes(disc)
+				(disc) => !RATE_UP_5_STAR_DISCS!.includes(disc)
 			);
 			const OFF_RATE_4_STAR_DISCS = COMMON_POOL.filter(
-				(disc) => disc.rarity === 4 && !RATE_UP_4_STAR_DISCS.includes(disc)
+				(disc) => disc.rarity === 4 && !RATE_UP_4_STAR_DISCS!.includes(disc)
 			);
 			const COMMON_3_STAR_DISCS = COMMON_POOL.filter((disc) => disc.rarity === 3);
 
@@ -307,10 +307,10 @@ export function recruit10() {
 				simulatorState.recruitHistory.trekker_permanent.push(recruit());
 				break;
 			case 'disc_limited':
-				simulatorState.recruitHistory.disc_limited.push(recruit() as Disc);
+				simulatorState.recruitHistory.disc_limited.push(recruit());
 				break;
 			case 'disc_permanent':
-				simulatorState.recruitHistory.disc_permanent.push(recruit() as Disc);
+				simulatorState.recruitHistory.disc_permanent.push(recruit());
 				break;
 		}
 	}

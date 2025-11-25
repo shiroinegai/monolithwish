@@ -1,6 +1,6 @@
 import { TREKKERS_BANNER_POOL, DISCS_BANNER_POOL, COMMON_POOL } from '$lib/data/recruits';
 import { simulatorState, activePool } from '$lib/states/simulator.svelte';
-import type { Banner } from '$lib/data/banners';
+import type { Banner } from '$lib/types/banners';
 
 export function generatePool(banner: Banner) {
 	switch (banner.type) {

@@ -1,25 +1,13 @@
 <script lang="ts">
-	import { trekkers } from '$lib/data/trekkers';
+	import { TREKKERS } from '$lib/data/trekkers';
 </script>
 
 <div>
-	{#each trekkers as { id, detail, skill }, i (`${i}${id}`)}
-		<p>{id}: {detail.name}, {detail.quality} star</p>
+	{#each TREKKERS as { id, name, star, element, attackType, tag, ...rest }, i (`${i}${id}`)}
+		<p>{id} {name} {star} star</p>
 		<p>
-			{detail.element}, {detail.position}, {detail.attackType}, {detail.style},
-			{detail.faction}
+			{element}, {rest.class}, {attackType}, {tag},
 		</p>
-		{#each ['attack', 'main', 'support', 'ultimate'] as type, i (`${i}${type}`)}
-			<p>
-				{type === 'attack'
-					? 'Normal Attack'
-					: `${type.charAt(0).toUpperCase() + type.slice(1)} Skill`}: {skill[type].name}
-			</p>
-			<p>{skill[type].briefDesc}</p>
-			<p>{skill[type].desc}</p>
-			<p>{skill[type].damageType}</p>
-			<p>{skill[type].effectType}</p>
-		{/each}
 	{/each}
 </div>
 

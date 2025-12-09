@@ -2,7 +2,7 @@ import { BANNERS } from '$lib/data/banners';
 import { generatePool } from '$lib/utilities/simulator';
 
 export const simulatorState = $state({
-	activeBanner: BANNERS[1],
+	activeBanner: BANNERS[0],
 	pityCounter: {
 		trekker_limited: 0,
 		trekker_limited_4star_guarantee: 0,
